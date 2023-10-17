@@ -92,7 +92,7 @@ export class VentaComponent implements OnInit {
     })
   }
 
-  elimiarProducto(detalle: DetalleVenta){
+  eliminarProducto(detalle: DetalleVenta){
     this.totalPagar = this.totalPagar - parseFloat(detalle.total),
     this.listaProductosVenta = this.listaProductosVenta.filter(p=>p.idProducto != detalle.idProducto);
     this.datosDetalleVenta = new MatTableDataSource(this.listaProductosVenta);
@@ -106,10 +106,7 @@ export class VentaComponent implements OnInit {
       const request: Venta = {
         tipoPago: this.tipodePagoporDefecto,
         total: String(this.totalPagar.toFixed(2)),
-        detalleVenta: this.listaProductosVenta,
-        idVenta: 0,
-        numeroDocumento: '',
-        fechaRegistro: ''
+        detalleVenta: this.listaProductosVenta
       }
       this._ventaServicio.registrar(request).subscribe({
         next:(response)=>{
